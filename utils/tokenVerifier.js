@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+const config = require('./config');
 const logger = require('./logger');
 
 const getTokenFrom = (request) => {
@@ -10,11 +11,13 @@ const getTokenFrom = (request) => {
   return null;
 };
 
-
 const verifyToken = (request) => {
+  if (process.env.NODE_ENV === 'development') {
+    return null;
+  }
   const token = getTokenFrom(request);
   logger.info('token', token);
-  const decodedToken = jwt.verify(token, process.env.SECRET);
+  const decodedToken = jwt.verify(token, config.SECRET);
   logger.info('decoded token', decodedToken);
   if (!token || !decodedToken.id) {
     return { error: 'token missing or invalid' };
