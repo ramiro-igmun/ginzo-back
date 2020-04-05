@@ -9,6 +9,7 @@ const seedDB = require('./utils/seedDB');
 const mattressRouter = require('./routes/mattresses');
 const bedBaseRouter = require('./routes/bedBases');
 const homeRouter = require('./routes/index');
+const loginRouter = require('./routes/login');
 
 const app = express();
 
@@ -30,5 +31,6 @@ if (process.env.NODE_ENV === 'development') {
 app.use('/colchones', mattressRouter);
 app.use('/somieres', bedBaseRouter);
 app.use('/', homeRouter);
+app.use('/login', loginRouter);
 
 module.exports = app;
