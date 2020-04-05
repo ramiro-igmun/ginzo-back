@@ -2,8 +2,9 @@ const Mattress = require('../models/mattress');
 const mattressCollection = require('../data/mattressCollection');
 
 const seedDB = async () => {
-  if (!await Mattress.count()) {
+  if (!await Mattress.estimatedDocumentCount()) {
     Mattress.insertMany(mattressCollection);
+    console.log('db seeded');
   }
 };
 

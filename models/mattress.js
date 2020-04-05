@@ -7,17 +7,13 @@ const mattressSchema = new mongoose.Schema({
   name: String,
   price: Number,
   description: String,
-  // image: {
-  //   type: mongoose.Schema.Types.ObjectId,
-  //   ref: 'Image',
-  // },
+  image: String,
 });
 
 mattressSchema.set('toJSON', {
   transform: (document, returnedObject) => {
     returnedObject.id = returnedObject._id.toString();
-    // returnedObject.image =
-    // `${config.BASE_URL}colchones/${returnedObject.id}/images/${returnedObject.image}`;
+    returnedObject.image = `${config.BASE_URL}${returnedObject.image}`;
     delete returnedObject._id;
     delete returnedObject.__v;
   },

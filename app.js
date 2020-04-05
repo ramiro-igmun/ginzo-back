@@ -1,9 +1,10 @@
 const express = require('express');
-const path = require('path');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const path = require('path');
 const config = require('./utils/config');
 const seedDB = require('./utils/seedDB');
+const mattressRouter = require('./routes/mattresses');
 // const middleware = require('./utils/middleware');
 
 const app = express();
@@ -14,5 +15,6 @@ seedDB(); // seeds the database if empty
 app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/api/colchones', mattressRouter);
 
 module.exports = app;
