@@ -1,4 +1,7 @@
 /* eslint-disable no-console */
+/**
+ * Custom logger, it can be easily expanded or replaced
+ */
 const info = (...params) => {
   console.log(...params);
 };
