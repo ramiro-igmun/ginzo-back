@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const path = require('path');
 const logger = require('./utils/logger');
+const middleware = require('./utils/middleware');
 const config = require('./utils/config');
 const seedDB = require('./utils/seedDB');
 const mattressRouter = require('./routes/mattresses');
@@ -22,6 +23,9 @@ seedDB(); // seeds the database if empty
 app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
+if (process.env.NODE_ENV === 'development') {
+  app.use(middleware.requestLogger);
+}
 app.use('/api/colchones', mattressRouter);
 
 module.exports = app;
