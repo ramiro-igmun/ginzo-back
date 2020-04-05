@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-param-reassign */
 const mongoose = require('mongoose');
-const config = require('../utils/config');
+const config = require('../config');
 
 const bedBaseSchema = new mongoose.Schema({
   name: String,

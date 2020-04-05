@@ -1,4 +1,4 @@
-const logger = require('./logger');
+const logger = require('../utils/logger');
 
 const requestLogger = (request, response, next) => {
   logger.info('Method:', request.method);
@@ -8,6 +8,4 @@ const requestLogger = (request, response, next) => {
   next();
 };
 
-module.exports = {
-  requestLogger,
-};
+module.exports = requestLogger;

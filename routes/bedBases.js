@@ -10,7 +10,11 @@ bedBaseRouter.get('/', async (request, response) => {
 bedBaseRouter.get('/:id', async (request, response) => {
   const { id } = request.params;
   const bedBase = await BedBase.findById(id);
-  response.json(bedBase.toJSON());
+  if (bedBase) {
+    response.json(bedBase.toJSON());
+  } else {
+    response.status(404).end();
+  }
 });
 
 bedBaseRouter.delete('/:id', async (request, response) => {
@@ -19,8 +23,12 @@ bedBaseRouter.delete('/:id', async (request, response) => {
     response.status(401).json(error).end();
   }
   const { id } = request.params;
-  await BedBase.findByIdAndDelete(id);
-  response.status(204).end();
+  const deletedBedBase = await BedBase.findByIdAndDelete(id);
+  if (deletedBedBase) {
+    response.status(204).end();
+  } else {
+    response.status(404).end();
+  }
 });
 
 bedBaseRouter.put('/:id', async (request, response) => {
@@ -40,8 +48,11 @@ bedBaseRouter.put('/:id', async (request, response) => {
   {
     new: true,
   });
-
-  response.json(updatedbedBase.toJSON());
+  if (updatedbedBase) {
+    response.json(updatedbedBase.toJSON());
+  } else {
+    response.status(404).end();
+  }
 });
 
 module.exports = bedBaseRouter;

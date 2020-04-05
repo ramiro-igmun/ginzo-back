@@ -1,11 +1,11 @@
 const bcrypt = require('bcryptjs');
-const logger = require('./logger');
+const logger = require('../utils/logger');
 const Mattress = require('../models/mattress');
 const BedBase = require('../models/bedBase');
 const User = require('../models/user');
-const mattressCollection = require('../data/mattressCollection');
-const badeBaseCollection = require('../data/bedBaseCollection');
-const userCollection = require('../data/userCollection');
+const mattressCollection = require('./collections/mattressCollection');
+const badeBaseCollection = require('./collections/bedBaseCollection');
+const userCollection = require('./collections/userCollection');
 
 const seedDB = async () => {
   if (await Mattress.estimatedDocumentCount() < mattressCollection.length) {
