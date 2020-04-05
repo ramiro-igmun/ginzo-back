@@ -8,6 +8,7 @@ const config = require('./utils/config');
 const seedDB = require('./utils/seedDB');
 const mattressRouter = require('./routes/mattresses');
 const bedBaseRouter = require('./routes/bedBases');
+const homeRouter = require('./routes/index');
 
 const app = express();
 
@@ -26,7 +27,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 if (process.env.NODE_ENV === 'development') {
   app.use(middleware.requestLogger);
 }
-app.use('/api/colchones', mattressRouter);
-app.use('/api/somieres', bedBaseRouter);
+app.use('/colchones', mattressRouter);
+app.use('/somieres', bedBaseRouter);
+app.use('/', homeRouter);
 
 module.exports = app;
