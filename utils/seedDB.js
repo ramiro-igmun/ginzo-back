@@ -1,8 +1,11 @@
+const bcrypt = require('bcryptjs');
 const logger = require('./logger');
 const Mattress = require('../models/mattress');
 const BedBase = require('../models/bedBase');
+const User = require('../models/user');
 const mattressCollection = require('../data/mattressCollection');
 const badeBaseCollection = require('../data/bedBaseCollection');
+const userCollection = require('../data/userCollection');
 
 const seedDB = async () => {
   if (await Mattress.estimatedDocumentCount() < mattressCollection.length) {
@@ -15,6 +18,20 @@ const seedDB = async () => {
     await BedBase.deleteMany({});
     await BedBase.insertMany(badeBaseCollection);
     logger.info('bedBase collection seeded');
+  }
+
+  if (await User.estimatedDocumentCount() < userCollection.length) {
+    await User.deleteMany({});
+    const salt = await bcrypt.genSalt(10);
+    const hashedUsers = userCollection.map((user) => {
+      const passwordHash = bcrypt.hashSync(user.password, salt);
+      return new User({
+        email: user.email,
+        passwordHash,
+      });
+    });
+    await User.insertMany(hashedUsers);
+    logger.info('user collection seeded');
   }
 };
 
