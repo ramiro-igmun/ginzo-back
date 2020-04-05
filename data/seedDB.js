@@ -7,6 +7,10 @@ const mattressCollection = require('./collections/mattressCollection');
 const badeBaseCollection = require('./collections/bedBaseCollection');
 const userCollection = require('./collections/userCollection');
 
+/**
+ * Seed the database when there is no data or the length of the local collection is longer
+ * than the length of the collection in the database
+ */
 const seedDB = async () => {
   if (await Mattress.estimatedDocumentCount() < mattressCollection.length) {
     await Mattress.deleteMany({});
@@ -20,6 +24,7 @@ const seedDB = async () => {
     logger.info('bedBase collection seeded');
   }
 
+  // The user password is encrypted before being stored in the database
   if (await User.estimatedDocumentCount() < userCollection.length) {
     await User.deleteMany({});
     const salt = await bcrypt.genSalt(10);

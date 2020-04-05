@@ -17,6 +17,9 @@ mattressRouter.get('/:id', async (request, response) => {
   }
 });
 
+/**
+ * JWT athentication needed to modify the data
+ */
 mattressRouter.delete('/:id', async (request, response) => {
   const error = verifyToken(request);
   if (error) {

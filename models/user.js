@@ -7,6 +7,9 @@ const userSchema = new mongoose.Schema({
   passwordHash: String,
 });
 
+/**
+ * Formats the object before returning it to the client
+ */
 userSchema.set('toJSON', {
   transform: (document, returnedObject) => {
     returnedObject.id = returnedObject._id.toString();

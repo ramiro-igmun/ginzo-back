@@ -11,6 +11,10 @@ const mattressSchema = new mongoose.Schema({
   outstanding: Boolean,
 });
 
+/**
+ * Format the object before returning it to the client
+ * The image is returned as an URL constructed with an env variable
+ */
 mattressSchema.set('toJSON', {
   transform: (document, returnedObject) => {
     returnedObject.id = returnedObject._id.toString();

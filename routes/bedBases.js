@@ -17,6 +17,9 @@ bedBaseRouter.get('/:id', async (request, response) => {
   }
 });
 
+/**
+ * JWT athentication needed to modify the data
+ */
 bedBaseRouter.delete('/:id', async (request, response) => {
   const error = verifyToken(request);
   if (error) {

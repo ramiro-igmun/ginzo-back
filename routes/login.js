@@ -4,6 +4,9 @@ const bcrypt = require('bcryptjs');
 const loginRouter = require('express').Router();
 const User = require('../models/user');
 
+/**
+ * If the user is authenticated it returns a personal JWT
+ */
 loginRouter.post('/', async (request, response) => {
   const { body } = request;
   const user = await User.findOne({ email: body.email });
