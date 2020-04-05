@@ -14,6 +14,9 @@ const errorHandler = (error, request, response, next) => {
   if (error.name === 'CastError') {
     return response.status(400).send({ error: `field "${error.path}" has incorrect format` });
   }
+  if (error.name === 'JsonWebTokenError') {
+    return response.status(400).send({ error: error.message });
+  }
 
   next(error);
 };
