@@ -6,4 +6,32 @@ mattressRouter.get('/', async (request, response) => {
   response.json(mattresses.map((mattress) => mattress.toJSON()));
 });
 
+mattressRouter.get('/:id', async (request, response) => {
+  const { id } = request.params;
+  const mattress = await Mattress.findById(id);
+  response.json(mattress.toJSON());
+});
+
+mattressRouter.delete('/:id', async (request, response) => {
+  const { id } = request.params;
+  await Mattress.findByIdAndDelete(id);
+  response.status(204).end();
+});
+
+mattressRouter.put('/:id', async (request, response) => {
+  const { id } = request.params;
+  const { body } = request;
+
+  const updatedMattress = await Mattress.findByIdAndUpdate(id, {
+    name: body.name,
+    description: body.description,
+    price: body.price,
+  },
+  {
+    new: true,
+  });
+
+  response.json(updatedMattress.toJSON());
+});
+
 module.exports = mattressRouter;
