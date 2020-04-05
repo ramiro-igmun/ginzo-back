@@ -1,5 +1,6 @@
 const bedBaseRouter = require('express').Router();
 const BedBase = require('../models/bedBase');
+const verifyToken = require('../utils/tokenVerifier');
 
 bedBaseRouter.get('/', async (request, response) => {
   const bedBasees = await BedBase.find({});
@@ -13,12 +14,20 @@ bedBaseRouter.get('/:id', async (request, response) => {
 });
 
 bedBaseRouter.delete('/:id', async (request, response) => {
+  const error = verifyToken(request);
+  if (error) {
+    response.status(401).json(error).end();
+  }
   const { id } = request.params;
   await BedBase.findByIdAndDelete(id);
   response.status(204).end();
 });
 
 bedBaseRouter.put('/:id', async (request, response) => {
+  const error = verifyToken(request);
+  if (error) {
+    response.status(401).json(error).end();
+  }
   const { id } = request.params;
   const { body } = request;
 

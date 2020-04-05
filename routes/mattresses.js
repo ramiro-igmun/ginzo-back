@@ -1,5 +1,7 @@
 const mattressRouter = require('express').Router();
 const Mattress = require('../models/mattress');
+const verifyToken = require('../utils/tokenVerifier');
+
 
 mattressRouter.get('/', async (request, response) => {
   const mattresses = await Mattress.find({});
@@ -13,12 +15,20 @@ mattressRouter.get('/:id', async (request, response) => {
 });
 
 mattressRouter.delete('/:id', async (request, response) => {
+  const error = verifyToken(request);
+  if (error) {
+    response.status(401).json(error).end();
+  }
   const { id } = request.params;
   await Mattress.findByIdAndDelete(id);
   response.status(204).end();
 });
 
 mattressRouter.put('/:id', async (request, response) => {
+  const error = verifyToken(request);
+  if (error) {
+    response.status(401).json(error).end();
+  }
   const { id } = request.params;
   const { body } = request;
 
