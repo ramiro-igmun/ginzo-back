@@ -19,7 +19,7 @@ mongoose.connect(config.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology
   .catch((error) => {
     logger.info('error connecting to MongoDB:', error.message);
   });
-seedDB(); // seeds the database if empty
+seedDB(); // seeds the database if it is empty or lacking data
 
 app.use(cors());
 app.use(express.json());
