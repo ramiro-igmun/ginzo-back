@@ -8,12 +8,11 @@ const unknownEndpoint = (request, response) => {
 const errorHandler = (error, request, response, next) => {
   logger.error(error.message);
 
-  if (error.name === 'CastError') {
-    return response.status(400).send({ error: 'malformatted id' });
-  }
-
   if (error.name === 'ValidationError' || error.name === 'MongoError') {
     return response.status(400).json({ error: error.message });
+  }
+  if (error.name === 'CastError') {
+    return response.status(400).send({ error: `field "${error.path}" has incorrect format` });
   }
 
   next(error);
