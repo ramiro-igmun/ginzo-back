@@ -7,7 +7,7 @@ const middleware = require('./utils/middleware');
 const config = require('./utils/config');
 const seedDB = require('./utils/seedDB');
 const mattressRouter = require('./routes/mattresses');
-// const middleware = require('./utils/middleware');
+const bedBaseRouter = require('./routes/bedBases');
 
 const app = express();
 
@@ -27,5 +27,6 @@ if (process.env.NODE_ENV === 'development') {
   app.use(middleware.requestLogger);
 }
 app.use('/api/colchones', mattressRouter);
+app.use('/api/somieres', bedBaseRouter);
 
 module.exports = app;
