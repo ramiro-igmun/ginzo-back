@@ -26,6 +26,7 @@ mattressRouter.put('/:id', async (request, response) => {
     name: body.name,
     description: body.description,
     price: body.price,
+    outstanding: body.outstanding,
   },
   {
     new: true,

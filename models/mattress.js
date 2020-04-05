@@ -8,6 +8,7 @@ const mattressSchema = new mongoose.Schema({
   price: Number,
   description: String,
   image: String,
+  outstanding: Boolean,
 });
 
 mattressSchema.set('toJSON', {
