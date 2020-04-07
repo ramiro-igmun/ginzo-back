@@ -5,6 +5,7 @@ const mattressCollection = [
     price: 269,
     image: '/images/1.jpg',
     outstanding: true,
+    type: 'mattress',
   },
   {
     name: 'Myrbacka',
@@ -12,6 +13,7 @@ const mattressCollection = [
     price: 449,
     image: '/images/2.jpg',
     outstanding: false,
+    type: 'mattress',
   },
   {
     name: 'Hyllestad',
@@ -19,6 +21,7 @@ const mattressCollection = [
     price: 399,
     image: '/images/3.jpg',
     outstanding: true,
+    type: 'mattress',
   },
   {
     name: 'Hövag',
@@ -26,6 +29,7 @@ const mattressCollection = [
     price: 299,
     image: '/images/4.jpg',
     outstanding: false,
+    type: 'mattress',
   },
 ];
 

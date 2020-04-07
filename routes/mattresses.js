@@ -3,6 +3,7 @@ const Mattress = require('../models/mattress');
 const verifyToken = require('../utils/tokenVerifier');
 
 mattressRouter.get('/', async (request, response) => {
+  console.log(request.baseUrl);
   const mattresses = await Mattress.find({});
   response.json(mattresses.map((mattress) => mattress.toJSON()));
 });

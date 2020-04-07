@@ -5,6 +5,7 @@ const bedBaseCollection = [
     price: 130,
     image: '/images/5.jpg',
     outstanding: true,
+    type: 'bedBase',
   },
   {
     name: 'Lönset',
@@ -12,6 +13,7 @@ const bedBaseCollection = [
     price: 36,
     image: '/images/6.jpg',
     outstanding: false,
+    type: 'bedBase',
   },
   {
     name: 'Luröy',
@@ -19,6 +21,7 @@ const bedBaseCollection = [
     price: 18,
     image: '/images/7.jpg',
     outstanding: false,
+    type: 'bedBase',
   },
   {
     name: 'Espevär',
@@ -26,6 +29,7 @@ const bedBaseCollection = [
     price: 160,
     image: '/images/8.jpg',
     outstanding: true,
+    type: 'bedBase',
   },
 ];
 

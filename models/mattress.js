@@ -9,6 +9,7 @@ const mattressSchema = new mongoose.Schema({
   description: String,
   image: String,
   outstanding: Boolean,
+  type: String,
 });
 
 /**
